@@ -9,7 +9,7 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react'],
+    plugins: ['react'], 
     rules: {
         curly: 'error',
         'default-case': 'error',
@@ -19,7 +19,7 @@ module.exports = {
         'max-lines-per-function': ['error', 150],
         'max-params': ['error', 6],
         'no-alert': 'error',
-        'no-console': 'error',
+        'no-console': ['error', { allow: ['warn', 'error'] }],
         'no-empty-function': [
             'error',
             {

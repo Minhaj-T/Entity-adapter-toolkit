@@ -23,7 +23,7 @@
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "prepare": "husky install",
-        "build": "webpack",
+        "build": "webpack --mode production",
         "dev": "webpack serve"
     },
     "eslintConfig": {
