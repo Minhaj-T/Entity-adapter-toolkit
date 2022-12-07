@@ -18,4 +18,6 @@ function PostsExcerpt({ post }) {
 		</article>
 	);
 }
+// PostsExcerpt = React.memo(PostsExcerpt);
+// if the props will change only render the component, change the value of the props.
 export default PostsExcerpt;
