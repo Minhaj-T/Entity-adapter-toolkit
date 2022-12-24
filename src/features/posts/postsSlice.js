@@ -121,13 +121,12 @@ const postsSlice = createSlice({
 				state.error = action.error.message;
 			})
 			.addCase(addNewPost.fulfilled, (state, action) => {
-				const sortedPosts = state.posts.sort((a, b) => {
-					if (a.id > b.id) return 1;
-					if (a.id < b.id) return -1;
-					return 0;
-				});
+				// Fix for API post IDs:
+				// Creating sortedPosts & assigning the id
+				// would be not be needed if the fake API
+				// returned accurate new post IDs
 
-				action.payload.id = sortedPosts[sortedPosts.length - 1].id + 1;
+				action.payload.id = state.ids[state.ids.length - 1] + 1;
 				// End fix for fake API post IDs
 
 				action.payload.userId = Number(action.payload.userId);
@@ -139,7 +138,6 @@ const postsSlice = createSlice({
 					rocket: 0,
 					coffee: 0
 				};
-				// console.log(action.payload);
 				postsAdapter.addOne(state, action.payload);
 			})
 			.addCase(updatePost.fulfilled, (state, action) => {
@@ -149,7 +147,7 @@ const postsSlice = createSlice({
 					return;
 				}
 				action.payload.date = new Date().toISOString();
-				 postsAdapter.upsertOne(state, action.payload);
+				postsAdapter.upsertOne(state, action.payload);
 			})
 			.addCase(deletePost.fulfilled, (state, action) => {
 				if (!action.payload?.id) {
@@ -158,7 +156,7 @@ const postsSlice = createSlice({
 					return;
 				}
 				const { id } = action.payload;
-				 postsAdapter.removeOne(state, id);
+				postsAdapter.removeOne(state, id);
 			});
 		
 	}
