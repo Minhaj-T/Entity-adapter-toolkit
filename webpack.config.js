@@ -69,7 +69,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Webpack App',
+            title: 'Blog Project',
             filename: 'index.html',
             template: 'public/index.html',
         }),
